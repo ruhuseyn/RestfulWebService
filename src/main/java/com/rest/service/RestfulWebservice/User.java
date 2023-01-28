@@ -1,11 +1,25 @@
 package com.rest.service.RestfulWebservice;
 
+import java.time.LocalDate;
+
 public class User {
 
-    private String name;
+  private Integer id;
+  private String name;
+  private LocalDate birthDate;
 
-    public User(String name) {
+    public User(Integer id, String name, LocalDate birthDate) {
+        this.id = id;
         this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -16,10 +30,20 @@ public class User {
         this.name = name;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }
