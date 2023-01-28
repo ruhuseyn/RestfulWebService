@@ -11,6 +11,6 @@ public class UserController {
 
     @GetMapping("/getuser/{id}")
     public User getUser(@PathVariable String name){
-        return new User(String.format("Hello ",name));
+        return new User(String.format("Hello,%s",name));
     }
 }
