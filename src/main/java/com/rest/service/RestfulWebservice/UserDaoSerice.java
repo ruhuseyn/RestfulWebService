@@ -20,4 +20,7 @@ public class UserDaoSerice {
     public List<User> getAll(){
         return list;
     }
+    public User getUserById(Integer id){
+        return list.get(id);
+    }
 }
