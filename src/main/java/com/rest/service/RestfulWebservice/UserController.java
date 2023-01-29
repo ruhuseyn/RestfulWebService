@@ -24,7 +24,7 @@ public class UserController {
     public User getUserById(@PathVariable Integer id) {
         return userDaoSerice.getUserById(id);
     }
-    @PostMapping("/save")
+    @PostMapping("/users")
     public void saveUser(@RequestBody User user){
         userDaoSerice.saveUser(user);
     }
