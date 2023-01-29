@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class UserDaoSerice {
@@ -21,6 +22,7 @@ public class UserDaoSerice {
         return list;
     }
     public User getUserById(Integer id){
-        return list.get(id);
+        Predicate<? super User> predicate = user -> user.getId().equals(id);
+        return list.stream().filter(predicate).findFirst().get();
     }
 }
