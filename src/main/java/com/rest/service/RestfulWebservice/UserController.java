@@ -24,11 +24,12 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Integer id) {
-       User foundUser = userDaoSerice.getUserById(id);
+       User user = userDaoSerice.getUserById(id);
 
-       if(foundUser == null){
-           throw new UserNotFoundException("id: " +id+ " does not exist");
+       if(user == null){
+           throw new UserNotFoundException("id: " +id);
        }
+       return user;
     }
     @PostMapping("/users")
     public ResponseEntity<User> saveUser(@RequestBody User user){
