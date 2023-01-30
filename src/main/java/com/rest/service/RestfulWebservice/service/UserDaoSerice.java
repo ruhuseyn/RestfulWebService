@@ -1,6 +1,6 @@
 package com.rest.service.RestfulWebservice.service;
 
-import com.rest.service.RestfulWebservice.User;
+import com.rest.service.RestfulWebservice.model.User;
 import com.rest.service.RestfulWebservice.UserNotFoundException;
 import org.springframework.stereotype.Component;
 

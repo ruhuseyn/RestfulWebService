@@ -1,4 +1,4 @@
-package com.rest.service.RestfulWebservice;
+package com.rest.service.RestfulWebservice.model;
 
 import java.time.LocalDate;
 
