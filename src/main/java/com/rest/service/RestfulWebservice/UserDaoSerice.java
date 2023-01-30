@@ -24,7 +24,7 @@ public class UserDaoSerice {
     }
     public User getUserById(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        return list.stream().filter(predicate).findFirst().get();
+        return list.stream().filter(predicate).findFirst().orElseThrow(() -> new UserNotFoundException("User yoxdu"));
     }
 
     public User saveUser(User user){
