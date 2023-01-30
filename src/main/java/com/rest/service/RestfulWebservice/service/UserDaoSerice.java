@@ -1,5 +1,7 @@
-package com.rest.service.RestfulWebservice;
+package com.rest.service.RestfulWebservice.service;
 
+import com.rest.service.RestfulWebservice.User;
+import com.rest.service.RestfulWebservice.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
