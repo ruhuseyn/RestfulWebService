@@ -28,15 +28,16 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Integer id) {
-       User user = userDaoSerice.getUserById(id);
+        User user = userDaoSerice.getUserById(id);
 
-       if(user == null){
-           throw new UserNotFoundException("id: " +id);
-       }
-       return user;
+        if (user == null) {
+            throw new UserNotFoundException("id: " + id);
+        }
+        return user;
     }
+
     @PostMapping("/users")
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
         User savedUser = userDaoSerice.saveUser(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -48,5 +49,10 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public void deleteUserById(@PathVariable Integer id) {
         userDaoSerice.deleteUserById(id);
+    }
+
+    @GetMapping("/hello-world_internationalized")
+    public String helloWorld() {
+        return "Hello World!";
     }
 }
