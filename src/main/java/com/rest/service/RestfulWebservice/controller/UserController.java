@@ -5,12 +5,14 @@ import com.rest.service.RestfulWebservice.service.UserDaoSerice;
 import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api")
@@ -56,6 +58,7 @@ public class UserController {
 
     @GetMapping("/hello-world_internationalized")
     public String helloWorld() {
-        return "Hello World!";
+        Locale locale = LocaleContextHolder.getLocale();
+        return messageSource.getMessage("good.morning.message",null,"Default message",locale);
     }
 }
