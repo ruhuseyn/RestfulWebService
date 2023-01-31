@@ -3,6 +3,7 @@ package com.rest.service.RestfulWebservice.controller;
 import com.rest.service.RestfulWebservice.model.User;
 import com.rest.service.RestfulWebservice.service.UserDaoSerice;
 import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -35,7 +36,7 @@ public class UserController {
        return user;
     }
     @PostMapping("/users")
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
         User savedUser = userDaoSerice.saveUser(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
