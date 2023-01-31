@@ -4,6 +4,7 @@ import com.rest.service.RestfulWebservice.model.User;
 import com.rest.service.RestfulWebservice.service.UserDaoSerice;
 import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
 import jakarta.validation.Valid;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,10 +16,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+    private MessageSource messageSource;
     private final UserDaoSerice userDaoSerice;
 
-    public UserController(UserDaoSerice userDaoSerice) {
+    public UserController(UserDaoSerice userDaoSerice,MessageSource messageSource) {
         this.userDaoSerice = userDaoSerice;
+        this.messageSource = messageSource;
     }
 
     @GetMapping("/users")
