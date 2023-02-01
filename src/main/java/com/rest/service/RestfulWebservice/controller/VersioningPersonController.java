@@ -18,4 +18,9 @@ public class VersioningPersonController {
     public PersonV2 getSecondVersionOfPerson(){
         return new PersonV2(new Name("Ugur","Kerimov"));
     }
+
+    @GetMapping("/v1/person")
+    public PersonV1 findById(Integer id){
+        return new PersonV1("Rufet Huseynov");
+    }
 }
