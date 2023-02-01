@@ -15,6 +15,6 @@ public class VersioningPersonController {
 
     @GetMapping("/v2/person")
     public PersonV2 getSecondVersionOfPerson(){
-        return new PersonV2("Ugur Kerimov");
+        return new PersonV2("Ugur","Kerimov");
     }
 }

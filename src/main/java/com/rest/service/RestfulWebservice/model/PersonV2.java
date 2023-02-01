@@ -2,20 +2,27 @@ package com.rest.service.RestfulWebservice.model;
 
 public class PersonV2 {
 
-    private String name;
+    private String firstName;
+    private String lastName;
 
-    public PersonV2(String name) {
-        this.name = name;
+    public PersonV2(String firstName,String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     @Override
     public String toString() {
         return "PersonV2{" +
-                "name='" + name + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }
