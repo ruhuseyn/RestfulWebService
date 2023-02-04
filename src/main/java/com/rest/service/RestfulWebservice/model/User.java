@@ -1,5 +1,6 @@
 package com.rest.service.RestfulWebservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 public class User {
 
+    @JsonIgnore
   private Integer id;
 
   @Size(min = 2, message = "Size must be long than 2 character")
