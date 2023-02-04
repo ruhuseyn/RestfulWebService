@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Component
 public class UserDaoSerice {
@@ -29,7 +30,7 @@ public class UserDaoSerice {
     }
     public User getUserById(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        return (User) predicate;
+        return list.stream().filter(predicate).findFirst().get();
     }
 
     public User saveUser(User user){
