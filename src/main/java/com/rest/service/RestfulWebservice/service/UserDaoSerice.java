@@ -1,5 +1,6 @@
 package com.rest.service.RestfulWebservice.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rest.service.RestfulWebservice.model.User;
 import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.function.Predicate;
 public class UserDaoSerice {
 
     private static List<User> list = new ArrayList<>();
+
     private static int userCount = 0;
 
     static{
@@ -21,12 +23,13 @@ public class UserDaoSerice {
         list.add(new User(++userCount,"Rauf", LocalDate.now().minusYears(20)));
     }
 
+
     public List<User> getAll(){
         return list;
     }
     public User getUserById(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        return list.stream().filter(predicate).findFirst().orElseThrow(() -> new UserNotFoundException("User yoxdu"));
+        return (User) predicate;
     }
 
     public User saveUser(User user){

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VersioningPersonController {
 
-    @GetMapping("/v1/person")
+    @GetMapping("/v1/personn")
     public PersonV1 getFirstVersionOfPerson(){
         return new PersonV1("Rufet Huseynov");
     }
@@ -19,8 +19,13 @@ public class VersioningPersonController {
         return new PersonV2(new Name("Ugur","Kerimov"));
     }
 
-    @GetMapping("/v1/person")
-    public PersonV1 findById(Integer id){
+    @GetMapping(path = "/person", params = "version=1")
+    public PersonV1 getFirstVersionOfPersonRequestParam(){
+        return new PersonV1("Rufet Huseynov");
+    }
+
+    @GetMapping(path = "/person", params = "version=2")
+    public PersonV1 getFirstVersionOfPersonRequestParam1(){
         return new PersonV1("Rufet Huseynov");
     }
 }
