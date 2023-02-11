@@ -8,6 +8,9 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class FilteringController {
 
@@ -22,7 +25,16 @@ public class FilteringController {
     }
 
     @GetMapping("/filtering-list")
-    public SomeBean getAllValue(){
-        return new SomeBean("v","v","v");
+    public MappingJacksonValue getAllValue(){
+        List<SomeBean> lists = new ArrayList<>();
+        lists.add(new SomeBean("value1","value2","value3"));
+        lists.add(new SomeBean("value4","value5","value6"));
+        lists.add(new SomeBean("value7","value8","value9"));
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(lists);
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("value1","value3");
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("SomeBeanFilter",filter);
+        mappingJacksonValue.setFilters(filterProvider);
+        return mappingJacksonValue;
     }
 }
