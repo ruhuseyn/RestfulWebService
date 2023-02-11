@@ -1,5 +1,8 @@
 package com.rest.service.RestfulWebservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
 
     private String value1;
