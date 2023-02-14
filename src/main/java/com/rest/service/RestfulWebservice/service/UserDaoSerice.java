@@ -16,13 +16,6 @@ public class UserDaoSerice {
 
     private static List<User> list = new ArrayList<>();
 
-    private static int userCount = 0;
-
-    static{
-        list.add(new User(++userCount,"Rufet", LocalDate.now().minusYears(30)));
-        list.add(new User(++userCount,"Ugur", LocalDate.now().minusYears(25)));
-        list.add(new User(++userCount,"Rauf", LocalDate.now().minusYears(20)));
-    }
 
 
     public List<User> getAll(){
