@@ -1,6 +1,7 @@
 package com.rest.service.RestfulWebservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rest.service.RestfulWebservice.model.Post;
 import com.rest.service.RestfulWebservice.model.User;
 import com.rest.service.RestfulWebservice.service.UserDaoSerice;
 import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
@@ -18,6 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.net.URI;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -67,9 +69,15 @@ public class UserController {
         userDaoSerice.deleteUserById(id);
     }
 
-    @GetMapping("/hello-world_internationalized")
-    public String helloWorld() {
-        Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage("good.morning.message",null,"Default message",locale);
+    @GetMapping("/users/{id}/posts")
+    public List<Post> retrievePostsForUser(@PathVariable Integer id) {
+        Optional<User> user = Optional.ofNullable(userDaoSerice.getUserById(id));
+
+        if(user.isPresent()){
+            throw new UserNotFoundException("id" + id);
+        }
+        return user.get().getPosts();
     }
+
+
 }
