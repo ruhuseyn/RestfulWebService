@@ -71,12 +71,12 @@ public class UserController {
 
     @GetMapping("/users/{id}/posts")
     public List<Post> retrievePostsForUser(@PathVariable Integer id) {
-        Optional<User> user = Optional.ofNullable(userDaoSerice.getUserById(id));
+        User user = userDaoSerice.getUserById(id);
 
-        if(user.isPresent()){
-            throw new UserNotFoundException("id" + id);
+        if (user == null) {
+            throw new UserNotFoundException("id: " + id);
         }
-        return user.get().getPosts();
+        return user.getPosts();
     }
 
 
