@@ -1,39 +1,33 @@
 package com.rest.service.RestfulWebservice.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rest.service.RestfulWebservice.model.User;
-import com.rest.service.RestfulWebservice.exception.UserNotFoundException;
+import com.rest.service.RestfulWebservice.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class UserDaoSerice {
 
-    private static List<User> list = new ArrayList<>();
-
-
+    private final UserRepository userRepository;
 
     public List<User> getAll(){
-        return list;
+        return userRepository.findAll();
     }
     public User getUserById(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        return list.stream().filter(predicate).findFirst().get();
+        return userRepository.findById(id).stream().filter(predicate).findFirst().get();
     }
 
     public User saveUser(User user){
-        user.setId(++userCount);
-        list.add(user);
+        userRepository.save(user);
         return user;
     }
 
     public void deleteUserById(Integer id){
-        Predicate<? super User> predicate = user -> user.getId().equals(id);
-        list.removeIf(predicate);
+        userRepository.deleteById(id);
     }
 }
